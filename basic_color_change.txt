@@ -1,0 +1,18 @@
+void mainImage( out vec4 fragColor, in vec2 fragCoord ) // "out" if for pixel color (r,g,b,a) output and "in" for inputing the current position on screen (x,y)(w,h)(v,h)(u,v)
+{ // vec2 for 2D OR 2 value vector, same for others
+    // Normalized pixel coordinates (from 0 to 1) by dividing the fragCoord by the iResolution.xy (shadertoy's inbuilt) which gives the resolution of that screen
+    // fragColor = vec4(1.0, 1.0, 1.0, 1.0); // this will render black screen on shadertoy. In GLSL this gets normalized from 0 to 1. alpha channel has no effect on shadertoy
+    vec2 uv = fragCoord/iResolution.xy; // .xy is for width & height we are excluding depth as we are working with 2D. This makes it dynamic and resolution independent by normalizing it. Now it ranges between -1 to 1 on both axes
+
+    // fragColor = vec4(uv, 1.0, 1.0); // this will render a gradient from left to right. we used uv as its vec2 so its basically 2 values hence we have 3 parameters here
+    // currently we have 0.5,0.5 at center of screen but if we wanna change it using uv = uv - 0.5 ,this doesnt works as it subtracts 0.5 from every point in space i.e now center becomes 0,0 and diagonal edge become -0.5,-0.5 and 0.5,0.5
+    // so to get the center as 0,0 and diagonal edges as -1,-1 and 1,1 we can use the following:
+    // uv = uv * 2.0 - 1.0; OR finally vec2 uv = (fragCoord/iResolution.xy) * 2.0 - 1.0;
+    // -> Time varying pixel color
+    vec3 col = 0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));
+
+    // -> Output to screen
+    fragColor = vec4(col,1.0);
+}
+
+// reference : https://youtu.be/f4s1h2YETNY

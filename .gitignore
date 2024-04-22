@@ -1,0 +1,56 @@
+# Build artifacts
+build/
+bin/
+obj/
+
+# IDE specific files
+# Adjust these based on your IDE
+*.suo
+*.user
+*.sln.docstates
+
+# Temporary editor files
+*.pyc
+*.swp
+*.bak
+
+# Generated shader code (if applicable)
+*.glsl.inc
+
+# Test results
+TestResults/*
+build_log.*
+
+# IDE specific caching directories
+*.ide/
+.vscode/
+*.vscode
+
+# Build results
+        [Dd]ebug/
+        [Rr]elease/
+
+        # MSTest test Results
+        [Tt]est[Rr]esult*/
+
+        # NuGet Packages
+        *.nupkg
+        **/packages/*
+
+        # Ignore the packages/build/ folder (used as an MSBuild target)
+        !**/packages/build/
+
+        # Windows Azure Build Output
+        csx/
+
+        # Others
+        sql/
+        *.Cache
+        ClientBin/
+        [Ss]tyle[Cc]op.*
+        ~*
+        *.dbmdl
+        *.dbproj.schemaview
+        *.pfx
+        *.publishsettings
+        node_modules/
